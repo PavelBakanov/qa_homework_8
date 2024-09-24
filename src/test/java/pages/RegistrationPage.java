@@ -71,13 +71,17 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setSubject(String value) {
-        subjectsLocator.setValue(value).pressEnter();
+    public RegistrationPage setSubjects(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            subjectsLocator.setValue(array[i]).pressEnter();
+        }
         return this;
     }
 
-    public RegistrationPage setHobby(String value) {
-        hobbiesLocator.$(byText(value)).click();
+    public RegistrationPage setHobbies(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            hobbiesLocator.$(byText(array[i])).click();
+        }
         return this;
     }
 
@@ -91,15 +95,11 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setState(String value) {
+    public RegistrationPage setStateAndCity(String[] stateAndCityArray) {
         stateLocator.click();
-        stateCityWrapperLocator.$(byText(value)).click();
-        return this;
-    }
-
-    public RegistrationPage setCity(String value) {
+        stateCityWrapperLocator.$(byText(stateAndCityArray[0])).click();
         cityLocator.click();
-        stateCityWrapperLocator.$(byText(value)).click();
+        stateCityWrapperLocator.$(byText(stateAndCityArray[1])).click();
         return this;
     }
 
@@ -109,9 +109,20 @@ public class RegistrationPage {
 
     public RegistrationPage checkResult(String key, String value) {
 
-        resultTableOfRegistration.checkResultOfRegistration(resultTableLocator,key, value);
+        resultTableOfRegistration.checkResultOfRegistration(resultTableLocator, key, value);
         return this;
     }
+
+    public RegistrationPage checkResult(String key, String[] arrayOfValues) {
+
+        for (int i = 0; i < arrayOfValues.length; i++) {
+            resultTableOfRegistration.checkResultOfRegistration(resultTableLocator, key, arrayOfValues[i]);
+        }
+
+        return this;
+    }
+
+
     public void checkNegativeResult() {
         resultTableOfRegistration.checkNegativeResult(resultTableLocator);
     }

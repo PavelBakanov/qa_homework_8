@@ -16,5 +16,4 @@ public class ResultTableOfRegistration {
         $(locator).shouldNotBe(visible);
     }
 
-
 }
