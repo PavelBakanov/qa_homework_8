@@ -31,7 +31,7 @@ public class RandomUtils {
     }
 
     public String generateYearOfBirthDay() {
-        return String.valueOf(faker.number().numberBetween(1800, 2024));
+        return String.valueOf(faker.number().numberBetween(1900, 2024));
     }
 
     public String generateMonthOfBirthDay() {
