@@ -1,6 +1,7 @@
 package utils;
 
 import com.github.javafaker.Faker;
+
 import java.util.Locale;
 
 public class RandomUtils {
@@ -96,7 +97,7 @@ public class RandomUtils {
 
         for (int i = 0; i < newArray.length; i++) {
             newArray[i] = faker.options().option(array);
-            array = removeElementFromArray(newArray[i],array);
+            array = removeElementFromArray(newArray[i], array);
         }
         return newArray;
 
@@ -108,43 +109,31 @@ public class RandomUtils {
 
         for (int i = 0; i < newArray.length; i++) {
             newArray[i] = faker.options().option(array);
-            array = removeElementFromArray(newArray[i],array);
+            array = removeElementFromArray(newArray[i], array);
         }
         return newArray;
+    }
+
+    public String ChooseRandomFile (String[] arrayOfFileNames)
+    {
+        return faker.options().option(arrayOfFileNames);
     }
 
     public String generateAddress() {
         return String.valueOf(faker.address().streetAddress());
     }
 
-    public String[] generateStateAndCity(String[][] array) {
+    public String[] generateStateAndCity(String[] arrayOfStates, String[][] arrayOfCities) {
         int stateNumber = faker.number().numberBetween(0, 3);
+        int cityNumber = faker.number().numberBetween(0, arrayOfCities[stateNumber].length);
         String[] resultArray = new String[2];
-
-        switch (stateNumber) {
-            case 0:
-                resultArray[0] = "NCR";
-                break;
-            case 1:
-                resultArray[0] = "Uttar Pradesh";
-                break;
-            case 2:
-                resultArray[0] = "Haryana";
-                break;
-            case 3:
-                resultArray[0] = "Rajasthan";
-                break;
-        }
-
-        int cityNumber = faker.number().numberBetween(0, array[stateNumber].length);
-        resultArray[1] = array[stateNumber][cityNumber];
+        resultArray[0] = arrayOfStates[stateNumber];
+        resultArray[1] = arrayOfCities[stateNumber][cityNumber];
 
         return resultArray;
-
     }
 
-    private String[] removeElementFromArray (String element, String[] array)
-    {
+    private String[] removeElementFromArray(String element, String[] array) {
 
         int newLength = 0;
 

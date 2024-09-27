@@ -38,13 +38,15 @@ public class RegistrationTests extends TestBase {
     private final String[] subjects = randomUtils.generateSubjects(subjectsBase);
     private final String[] hobbiesBase = {"Sports", "Reading", "Music"};
     private final String[] hobbies = randomUtils.generateHobbies(hobbiesBase);
-    private final String pictureName = "example.jpg";
+    private final String[] pictureNames = {"example.jpg", "example2.jpg", "example3.jpg"};
+    private final String chosenPictureName = randomUtils.ChooseRandomFile(pictureNames);
     private final String address = randomUtils.generateAddress();
-    private final String[][] stateAndCityBase = {{"Delhi", "Gurgaon", "Noida"},
+    private final String[] StateBase = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+    private final String[][] CityBase = {{"Delhi", "Gurgaon", "Noida"},
             {"Agra", "Lucknow", "Merrut"},
             {"Karnal", "Panipat"},
             {"Jaipur", "Jaiselmer"}};
-    private final String[] stateAndCityResult = randomUtils.generateStateAndCity(stateAndCityBase);
+    private final String[] stateAndCityResult = randomUtils.generateStateAndCity(StateBase, CityBase);
 
     @Test
     public void registrationWithPageObjectsTest() {
@@ -58,7 +60,7 @@ public class RegistrationTests extends TestBase {
                 .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
                 .setSubjects(subjects)
                 .setHobbies(hobbies)
-                .uploadPicture(pictureName)
+                .uploadPicture(chosenPictureName)
                 .setAddress(address)
                 .setStateAndCity(stateAndCityResult)
                 .pushSubmitButton();
@@ -70,7 +72,7 @@ public class RegistrationTests extends TestBase {
                 .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
                 .checkResult("Subjects", subjects)
                 .checkResult("Hobbies", hobbies)
-                .checkResult("Picture", pictureName)
+                .checkResult("Picture", chosenPictureName)
                 .checkResult("Address", address)
                 .checkResult("State and City", stateAndCityResult[0] + " " + stateAndCityResult[1]);
     }
