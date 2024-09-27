@@ -114,7 +114,7 @@ public class RandomUtils {
         return newArray;
     }
 
-    public String ChooseRandomFile (String[] arrayOfFileNames)
+    public String chooseRandomFile(String[] arrayOfFileNames)
     {
         return faker.options().option(arrayOfFileNames);
     }

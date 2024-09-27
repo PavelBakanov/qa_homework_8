@@ -39,14 +39,14 @@ public class RegistrationTests extends TestBase {
     private final String[] hobbiesBase = {"Sports", "Reading", "Music"};
     private final String[] hobbies = randomUtils.generateHobbies(hobbiesBase);
     private final String[] pictureNames = {"example.jpg", "example2.jpg", "example3.jpg"};
-    private final String chosenPictureName = randomUtils.ChooseRandomFile(pictureNames);
+    private final String chosenPictureName = randomUtils.chooseRandomFile(pictureNames);
     private final String address = randomUtils.generateAddress();
-    private final String[] StateBase = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
-    private final String[][] CityBase = {{"Delhi", "Gurgaon", "Noida"},
+    private final String[] stateBase = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+    private final String[][] cityBase = {{"Delhi", "Gurgaon", "Noida"},
             {"Agra", "Lucknow", "Merrut"},
             {"Karnal", "Panipat"},
             {"Jaipur", "Jaiselmer"}};
-    private final String[] stateAndCityResult = randomUtils.generateStateAndCity(StateBase, CityBase);
+    private final String[] stateAndCityResult = randomUtils.generateStateAndCity(stateBase, cityBase);
 
     @Test
     public void registrationWithPageObjectsTest() {
